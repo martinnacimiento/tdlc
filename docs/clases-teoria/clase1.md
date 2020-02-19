@@ -1,6 +1,6 @@
 ---
 prev: ./
-next: false
+next: ./clase2
 ---
 # Paradigmas
 

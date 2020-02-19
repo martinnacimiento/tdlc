@@ -1,16 +1,16 @@
 ---
 home: true
-heroImage: /img/home.jpg
+heroImage: 
 heroText: Teoría de la computación
 tagline: en construcción...
 actionText: Comience aquí →
 actionLink: /clases-teoria/
 features:
-- title: Simplicity First
-  details: Minimal setup with markdown-centered project structure helps you focus on writing.
-- title: Vue-Powered
-  details: Enjoy the dev experience of Vue + webpack, use Vue components in markdown, and develop custom themes with Vue.
-- title: Performant
-  details: VuePress generates pre-rendered static HTML for each page, and runs as an SPA once a page is loaded.
+- title: Simplicidad
+  details: Contenido resumido para que te centres en entender lo esencial.
+- title: Cuida tus ojos
+  details: Porque sabemos como profesionales del área lo importantes que es proteger nuestros ojos de las pantallas brillantes te ofrezco un modo oscuro para tu lectura.
+- title: Offline
+  details: El sitio cuenta con tecnología PWA (Aplicación Web Progresiva) por lo que podes agregarla a tu celular, notebook o PC como aplicación y tener todo el contenido para que puedas estudiar sin internet.
 footer: MIT Licensed | Copyright © 2020-present Nacimiento Martin
 ---

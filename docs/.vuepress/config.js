@@ -39,6 +39,7 @@ module.exports = {
     ],
     title: 'Teoría de la computación',
     description: 'Apuntes de los contenidos dados en la cátedra.',
+    theme: 'yuu',
     themeConfig: {
         lastUpdated: 'Última actualización',
         nav: [

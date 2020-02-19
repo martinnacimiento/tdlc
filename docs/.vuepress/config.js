@@ -1,7 +1,7 @@
 module.exports = {
     base: "/teoria-de-la-computacion/",
     head: [
-      ['link', { rel: 'icon', href: '/logo.png' }],
+      ['link', { rel: 'icon', href: '/images/icons/icon-72x72.png' }],
       ['link', { rel: 'manifest', href: '/manifest.json' }],
       ['meta', { name: 'theme-color', content: '#3eaf7c' }],
       ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
@@ -12,6 +12,7 @@ module.exports = {
       ['meta', { name: 'msapplication-TileColor', content: '#000000' }]
     ],
     plugins: [
+      ['@vuepress/back-to-top'],
       [
         '@vuepress/pwa',
         {
@@ -25,12 +26,21 @@ module.exports = {
           'ga': 'UA-158708612-1'
         }
       ],
-      ['@vuepress/last-updated']
+      [
+        '@vuepress/last-updated',
+        {
+          transformer: (timestamp) => {
+            const moment = require('moment')
+            moment.locale('es')
+            return moment(timestamp).fromNow()
+          }
+        }
+      ]
     ],
     title: 'Teoría de la computación',
     description: 'Apuntes de los contenidos dados en la cátedra.',
     themeConfig: {
-        lastUpdated: 'Last Updated',
+        lastUpdated: 'Última actualización',
         nav: [
           { text: 'Inicio', link: '/' },
           { text: 'Teoría', link: '/clases-teoria/' },

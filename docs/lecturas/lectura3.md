@@ -14,7 +14,7 @@ Los elementos fundamentales para la definición de un lenguaje son los siguiente
 
   Por ejemplo, una sentencia condicional en C tendría como tokens las cadenas *if* y *else*.
 
-- La **sintaxis** o estructura conlleva la descripción de los diferentes componentes del lenguajey de sus combinaciones posibles. Para ello se utilizan las **gramáticas libres de contexto**, un estándar aceptado universalmente. Por ejemplo la sentencia *if* en el lenguaje C se define por:
+- La **sintaxis** o estructura conlleva la descripción de los diferentes componentes del lenguaje y de sus combinaciones posibles. Para ello se utilizan las **gramáticas libres de contexto**, un estándar aceptado universalmente. Por ejemplo la sentencia *if* en el lenguaje C se define por:
 
   ``` C
   <sentencia if> ::= if (<expresion>) <sentencia> [else <sentencia>]
@@ -47,3 +47,21 @@ Las fases que tanto un intérprete como un compilador deben llevar a cabo son:
 1. Primero, un **analizador léxico** debe identificar los tokens del programa (palabras clave, constantes, identificadores, etc.), ya que inicialmente el programa se entiende como una secuencia de caracteres. En ocasiones, hay un procesamiento previo, para transformar el programa en una entrada correcta del analizador léxico.
 2. A continuación, un **analizador sintáctico** o gramatical identifica las estructuras correctas que definen las secuencias de tokens.
 3. Finalmente, un **analizador semántico** asigna el significado de forma suficiente para su ejecución o la obtención del programa objetivo.
+
+Estas fases exigen el mantenimiento de un entorno o **ambiente de ejecución** (enlace de posiciones de memoria) , que administra el espacio de memoria para los datos del programa y registra el avance de la ejecución. En general, un intérprete administra él mismo el ambiente de ejecución, mientras que un compilador lo administra de forma indirecta, incluyendo en el código las operaciones necesarias.
+
+Cualquier lenguaje puede disponer de un intérprete y/o un compilador. En general los intérpretes disponen además de mecanismos interactivos para que el usuario manipule la entrada y salida, introduzca el programa en un terminal, recoja los resultados de manera determinada, etc. Sin embargo, los intérpretes son menos eficientes que los compiladores ya que estos permiten la **optimización del código** en análisis previos a la ejecución. Suele ser una opción de diseño si un compilador ejecuta una o varias fases.
+
+Otro aspecto que influye en la selección de un intérprete o un compilador. Son las propiedades del lenguaje que pueden ser determinadas antes de su ejecución o **propiedades estáticas** y las qu no, llamadas **propiedades dinámicas**. Las propiedades estáticas típicas son las relacionadas con el léxico y la sintaxis de un lenguaje. En C o Pascal, también son estáticos los tipos tipos de datos de las variables. En un lenguaje que sólo tenga asignación estática, es decir una posición de memoria fija para las variables durante la ejecución, puede utilizar un **ambiente totalmente estático** y en caso contrario un **ambiente totalmente dinámico**. Sin embargo hay grises en esto, como es el **ambiente basado en pilas** (como en C o Pascal) que tiene aspectos estáticos y dinámicos.
+
+Históricamente, los lenguajes imperativos tienen más propiedades estáticas y usan un ambiente estático administrado por un compilador, y los lenguajes declarativos usan un intérprete aunque dispongan de un compilador para obtener mayor eficiencia.
+
+Un último aspecto a considerar con respecto a la traducción es el relacionado con la **recuperación de errores** que favorece la **fiabilidad**, una propiedad importante de un traductor. Durante la traducción, el traductor se encuentra errores que debe indicar mediante mediante mensajes de error apropiados y que, dependiendo de la complejidad inherente al error, puede resolver o al menos recuperar para poder seguir adelante con la traducción.
+
+Los errores se clasifican de acuerdo con la fase de traducción en que se encuentran:
+1. Los **errores léxicos** occurren durante la fase de análisis léxico y suelen estar limitados al uso de caracteres ilegibles (o no admitidos). Los errores ortográficos son difíciles de identificar. Por ejemplo si aparece un *whille*, no se puede conocer a priori si es el nombre de una variable o una mala escritura de *while*, pero este tipo de error sí lo encontrará el analizador sintáctico.
+2. Los **errores sintácticos** se refieren a tokens que faltan en expresiones o expresiones mal formadas. Así, en el ejemplo anterior, el analizador sintáctico lo interpretará com un identificador, originando un error sintáctico si en ese punto del programa no se espera un identificador.
+3. Los errores semánticos pueden ser estáticos, detectados antes de la ejecución, como tipos incompatible o variables no declaradas, o errores dinámicos, detectados durante la ejecución como una división por cero o un subíndice fuera de rango.
+4. Los **errores lógicos**, que son también cometidos por el programador, pero además producen un comportamiento erróneo o no deseable del programa.
+
+En ocasiones, en la descripción de los lenguajes se especifican qué errores deben ser detectados antes de la ejecución, cuáles pueden provocar un error en tiempo de ejecución y cuáles pueden pasar desapercibidos, pero el comportamiento preciso de un traductor respecto a un error no suele estar especificado. La **pragmática** de los lenguajes de programación se ocupa de aspectos como la especificación de mecanismos para activación o deshabilitación de opciones de optimización, depuración y otras facilidades pragmáticas, que suelen incluirse en los traductores.
